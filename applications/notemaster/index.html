@@ -13,14 +13,15 @@
     <div class="form-group">
       <div class="form-group">
         <label>Note Title</label>
-        <input class="form-control" type="text" v-model="note.title">
+        <input class="form-control" type="text" v-model="note.title"> <!-- v-model binduje data z textovyho pole nebo checkboxu na promennou-->
       </div>
       <div class="form-group">
         <label>Note Text</label>
         <textarea class="form-control" v-model="note.text"></textarea>
       </div>
     </div>
-    <button class="btn btn-primary" @click="addNote">Submit</button>
+    <button class="btn btn-primary" @click="addNote">Submit</button> <!-- @ je shorthand pro v-on funkci -->
+    <button class="btn btn-danger" @click="addNoteImportant">Submit Important</button>
   </div>
   <div class="col-sm-12">
     <div class="col-sm-4 note" v-for="(note, index) in notes">
@@ -36,16 +37,17 @@
   </div>
 </div>
 <script>
+  console.log("hi");
   var app = new Vue({
     el: '#app',
-    data: {
+    data: { // data ukládá proměnný pro komponent
       title: 'Notemaster',
-      note: {
-        title: '',
-        text: ''
+      note: {   // Objekt
+        title: '', // Proměnná pro Title v html templatu
+        text: '' // Proměnná pro Text v html templatu
       },
-      notes: [
-        {
+      notes: [ // Array (notes bude víc)
+        { // Ulozene promenne nove note v objektu
           title: 'Visited Hawaii',
           text: 'I loved the beaches and delicious fresh coconuts',
           date: new Date(Date.now()).toLocaleString()
@@ -60,6 +62,9 @@
           title,
           date: new Date(Date.now()).toLocaleString()
         })
+      },
+      addNoteImportant() {
+
       },
       removeNote(index) {
         this.notes.splice(index, 1)
